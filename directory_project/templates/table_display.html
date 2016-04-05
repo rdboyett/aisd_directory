@@ -1,0 +1,28 @@
+
+
+
+      <div class="col-xs-12">
+	<div class="panel panel-default">
+	  <div class="panel-body table-responsive">
+	    {% if userInfo %}
+	    <table class="table table-bordered table-hover">
+	      <thead>
+		<tr><th>Name</th><th>School/Campus/Dept.</th><th>Room No.</th><th>Phone</th></tr>
+	      </thead>
+	      <tbody>
+		{% for user in userInfo %}
+		<tr class="">
+		  <td>{{ user.firstName|capfirst }} {{ user.lastName|capfirst }}</td>
+		  <td>{{ user.school|capfirst }}</td>
+		  <td>{{ user.roomNumber }}</td>
+		  <td>{{ user.phoneExtension }}</td>
+		</tr>
+		{% endfor %}
+	      </tbody>
+	    </table>
+	    {% else %}
+	    <div class="text-center">Sorry, try <a href="http://aisboard.alvaradoisd.net">advanced search</a>.</div>
+	    {% endif %}
+	  </div><!--/panel content-->
+	</div><!--/panel-->
+      </div>

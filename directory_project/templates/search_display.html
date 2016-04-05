@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}AISD Directory Search{% endblock %}
+
+
+
+{% block body %}
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-search"></i> Search Results</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+	 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4>Employee Information</h4>
+          </div>
+        </div>
+        <div class="panel-body table-responsive">
+          
+{% if userInfo %}
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>School/Campus/Dept.</th><th>Position</th></tr>
+        </thead>
+        <tbody>
+	  {% for user in userInfo %}
+          <tr class="clickable getUserInfoClickable" data-toggle="modal" data-target="#myModal" data-options='{"userID":{{ user.id }}}'>
+	    <td>{{ user.firstName|capfirst }} {{ user.lastName|capfirst }}</td>
+	    <td>{{ user.email }}</td>
+	    <td>{{ user.school|capfirst }}</td>
+	    <td>{{ user.job|capfirst }}</td>
+	  </tr>
+	  {% endfor %}
+        </tbody>
+      </table>
+{% endif %}
+        </div><!--/panel content-->
+      </div><!--/panel-->
+	 
+	 
+       </div><!--/row-->
+       
+       
+       <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Employee's Info...</h4>
+      </div>
+      <div id="userInfoDisplay" class="modal-body table-responsive">
+	<div id="spinner"></div>
+	    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      {% if userAdmin %}
+	<a id="editButtonDirect" href=""><button type="button" class="btn btn-primary">Edit</button></a>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+       
+{% endblock %}
+
+
+
+
+
+{% block extraScript %}
+{% endblock %}
+
+
+
+
+

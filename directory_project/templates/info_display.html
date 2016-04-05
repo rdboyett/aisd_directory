@@ -1,0 +1,45 @@
+{% if userInfo %}
+	<table class="userInfoDisplayClass table table-bordered table-hover">
+	  <tbody>
+	    {% if googleUser %}
+	    <tr>
+	      <td><img src="{{ googleUser.googleAvatar }}" width="100" alt="google+ Image"/></td>
+	    </tr>
+	    {% endif %}
+	    <tr>
+	      <td>Name</td>
+	      <td>{{ userInfo.firstName|capfirst }} {{ userInfo.lastName|capfirst }}</td>
+	    </tr>
+	    <tr>
+	      <td>Email</td>
+	      <td>{{ userInfo.email }}</td>
+	    </tr>
+	    <tr>
+	      <td>School/Campus/Dept.</td>
+	      <td>{{ userInfo.school|capfirst }}</td>
+	    </tr>
+	    <tr>
+	      <td>Grade</td>
+	      <td>{{ userInfo.grade }}</td>
+	    </tr>
+	    <tr>
+	      <td>Subject</td>
+	      <td>{{ userInfo.subject|capfirst }}</td>
+	    </tr>
+	    <tr>
+	      <td>Position</td>
+	      <td>{{ userInfo.job|capfirst }}</td>
+	    </tr>
+	    <tr>
+	      <td>Room Number</td>
+	      <td>{{ userInfo.roomNumber }}</td>
+	    </tr>
+	    <tr>
+	      <td>Phone Extension</td>
+	      <td>{{ userInfo.phoneExtension }}</td>
+	    </tr>
+	  </tbody>
+	</table>
+{% else %}
+	<div> Sorry, I'm so embarrassed, but something went wrong.</div>
+{% endif %}

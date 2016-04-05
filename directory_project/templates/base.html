@@ -1,0 +1,122 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>{% block title %}No Title{% endblock %}</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="{% static "directory_project/css/bootstrap.min.css" %}" rel="stylesheet">
+		<link href="{% static "directory_project/css/jquery-ui.css" %}" rel="stylesheet">
+		<link href="{% static "directory_project/css/jquery-ui.theme.css" %}" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="{% static "directory_project/css/styles.css" %}" rel="stylesheet">
+	</head>
+	<body>
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header col-sm-8">
+      <div class="col-xs-10 col-sm-6" style="padding: 10px;">
+	<form id="search-form" action="{% url directory_app.views.searchResults %}" method="post">{% csrf_token %}
+		<input  class="form-control" id="searchBar" type="text" name="q" placeholder="Search...">
+		<button class="searchButton" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+	</form>
+      </div>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="glyphicon glyphicon-align-justify" style="color: #FFF;"></span>
+      </button>
+    </div>
+    
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <i class="glyphicon glyphicon-user"></i>  {{ user.first_name|capfirst }} {{ user.last_name|capfirst }} <span class="caret"></span></a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a href="{% url directory_app.views.myProfile %}">My Profile</a></li>
+            <li><a href="/google/logout/"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div>
+<!-- /Header -->
+
+<!-- Main -->
+<div class="container" style="margin-bottom: 100px;">
+  
+  <!-- upper section -->
+  <div class="row">
+	<div class="col-sm-3">
+		<ul class="nav nav-stacked hidden-xs">
+		  <li class="{% if advancedSearch %}active-link disabled{% endif %}"><a href="{% url directory_app.views.dashboard %}"><i class="glyphicon glyphicon-search"></i> &nbsp;Advanced Search</a></li>
+		  {% if userAdmin %}
+		  <li class="{% if addEmployee %}active-link disabled{% endif %}"><a href="{% url directory_app.views.add %}"><i class="glyphicon glyphicon-plus"></i> &nbsp;Add an Employee</a></li>
+		  {% endif %}
+		  {% ifequal user.email 'rboyett@alvaradoisd.net' %}
+		  <li class="{% if batchAdd %}active-link disabled{% endif %}"><a href="{% url directory_app.views.batchAdd %}"><i class="glyphicon glyphicon-th-list"></i> &nbsp;Batch Upload</a></li>
+		  {% endifequal %}
+		  <li class="{% if myProfile %}active-link disabled{% endif %}"><a href="{% url directory_app.views.myProfile %}"><i class="glyphicon glyphicon-user"></i> &nbsp;My Profile</a></li>
+		  
+		  {% if user.email == 'rboyett@alvaradoisd.net' or user.email == 'jhenderson@alvaradoisd.net' or user.email == 'jholland@alvaradoisd.net' %}
+		  <li class="{% if badgeManage %}active-link disabled{% endif %}"><a href="{% url badge_app.views.badgeManager %}"><i class="glyphicon glyphicon-certificate"></i> &nbsp;Badge Manager</a></li>
+		  {% endif %}
+		</ul>
+		
+		
+		<div class="text-center">
+			<div class="visible-xs-inline-block btn-group">
+				<a href="{% url directory_app.views.dashboard %}" class="btn btn-sm {% if advancedSearch %}btn-primary disabled{% else %}btn-default{% endif %}"><i class="glyphicon glyphicon-search"></i></a>
+				<a href="{% url directory_app.views.add %}" class="btn btn-sm {% if addEmployee %}btn-primary disabled{% else %}btn-default{% endif %}"><i class="glyphicon glyphicon-plus"></i></a>
+				<a href="{% url directory_app.views.batchAdd %}" class="btn btn-sm {% if batchAdd %}btn-primary disabled{% else %}btn-default{% endif %}"><i class="glyphicon glyphicon-th-list"></i></a>
+				<a href="{% url directory_app.views.myProfile %}" class="btn btn-sm {% if myProfile %}btn-primary disabled{% else %}btn-default{% endif %}"><i class="glyphicon glyphicon-user"></i></a>
+			</div>
+		</div>
+		
+		<hr>
+      
+  	</div><!-- /span-3 -->
+    <div class="col-sm-9">
+
+{% block body %}
+       
+{% endblock %}
+	</div><!--/col-span-9-->
+    
+  </div><!--/row-->
+  <!-- /upper section -->
+  
+  
+  
+</div><!--/container-->
+<!-- /Main -->
+
+<footer class="text-center"  style="position: fixed; bottom: 0;width: 100%;height: 35px;margin-top: 10px;padding-top: 10px;">&copy; Alvarado ISD 2014</footer>
+
+
+
+
+  
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="{% static "directory_project/js/bootstrap.min.js" %}"></script>
+		<script src="{% static "directory_project/js/jquery.validate.js" %}"></script>
+		<script src="{% static "directory_project/js/jquery-ui.js" %}"></script>
+		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+		<script src="{% static "directory_project/js/jquery.form.js" %}"></script>
+		<script src="{% static "directory_project/js/spin.js" %}"></script>
+		<script>
+			var searchbarURL = "{% url directory_app.views.search_bar %}"
+			var getUserInfoURI = '{% url directory_app.views.getUserInfo %}'
+		</script>
+		<script src="{% static "directory_project/js/main.js" %}"></script>
+		{% block extraScript %}{% endblock %}
+	</body>
+</html>

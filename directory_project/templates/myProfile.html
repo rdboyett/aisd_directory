@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}AISD Directory Search{% endblock %}
+
+
+
+{% block body %}
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-user"></i> My Profile</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+	 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <i class="glyphicon glyphicon-wrench pull-right"></i>
+            <h4>{{ userInfo.firstName|capfirst }} {{ userInfo.lastName|capfirst }}</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          
+          <form id="addEmployeeForm" class="form form-vertical" action="{% url directory_app.views.addEmployeeAjax %}" method="post">{% csrf_token %}
+	    <input type="hidden" value="update" name="addOrUpdate">
+            <div class="control-group col-sm-6">
+              <label>First Name</label>
+              <div class="controls">
+                <input type="text" name="firstName" noSpace="true" required="true" minlength="2" maxlength="45" class="form-control" placeholder="Enter Name" value="{{ userInfo.firstName|capfirst }}">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Last Name</label>
+              <div class="controls">
+                <input type="text" name="lastName" noSpace="true" required="true" minlength="3" maxlength="45" class="form-control" placeholder="Enter Name" value="{{ userInfo.lastName|capfirst }}">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>email</label>
+              <div class="controls">
+                <input type="email" name="email" class="form-control" placeholder="Enter" required="true" value="{{ userInfo.email }}">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Grade</label>
+              <div class="controls">
+		<select name="grade" class="form-control" name="subject">
+			<option value="">Select One...</option>
+			<option value="na"
+			    {% ifequal userInfo.grade "na" %} selected="selected"{% endifequal %}
+			  >None</option>
+			<option value="K"
+			    {% ifequal userInfo.grade "K" %} selected="selected"{% endifequal %}
+			  >Kindergarten</option>
+			<option value="1"
+			    {% ifequal userInfo.grade "1" %} selected="selected"{% endifequal %}
+			  >1st</option>
+			<option value="2"
+			    {% ifequal userInfo.grade "2" %} selected="selected"{% endifequal %}
+			  >2nd</option>
+			<option value="3"
+			    {% ifequal userInfo.grade "3" %} selected="selected"{% endifequal %}
+			  >3rd</option>
+			<option value="4"
+			    {% ifequal userInfo.grade "4" %} selected="selected"{% endifequal %}
+			  >4th</option>
+			<option value="5"
+			    {% ifequal userInfo.grade "5" %} selected="selected"{% endifequal %}
+			  >5th</option>
+			<option value="6"
+			    {% ifequal userInfo.grade "6" %} selected="selected"{% endifequal %}
+			  >6th</option>
+			<option value="7"
+			    {% ifequal userInfo.grade "7" %} selected="selected"{% endifequal %}
+			  >7th</option>
+			<option value="8"
+			    {% ifequal userInfo.grade "8" %} selected="selected"{% endifequal %}
+			  >8th</option>
+			<option value="9"
+			    {% ifequal userInfo.grade "9" %} selected="selected"{% endifequal %}
+			  >9th</option>
+			<option value="10"
+			    {% ifequal userInfo.grade "10" %} selected="selected"{% endifequal %}
+			  >10th</option>
+			<option value="11"
+			    {% ifequal userInfo.grade "11" %} selected="selected"{% endifequal %}
+			  >11th</option>
+			<option value="12"
+			    {% ifequal userInfo.grade "12" %} selected="selected"{% endifequal %}
+			  >12th</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Subject</label>
+              <div class="controls">
+		<select name="subject" class="form-control" name="subject">
+			<option value="">Select One...</option>
+			<option value="All Subjects"
+			    {% ifequal userInfo.subject "All Subjects" %} selected="selected"{% endifequal %}
+			  >All Subjects</option>
+			<option value="No Subjects"
+			    {% ifequal userInfo.subject "No Subjects" %} selected="selected"{% endifequal %}
+			  >No Subjects</option>
+			<option value="English-Reading"
+			    {% ifequal userInfo.subject "English-Reading" %} selected="selected"{% endifequal %}
+			  >English-Reading</option>
+			<option value="Math"
+			    {% ifequal userInfo.subject "Math" %} selected="selected"{% endifequal %}
+			  >Math</option>
+			<option value="Science"
+			    {% ifequal userInfo.subject "Science" %} selected="selected"{% endifequal %}
+			  >Science</option>
+			<option value="Social Studies"
+			    {% ifequal userInfo.subject "Social Studies" %} selected="selected"{% endifequal %}
+			  >Social Studies</option>
+			<option value="Special Education"
+			    {% ifequal userInfo.subject "Special Education" %} selected="selected"{% endifequal %}
+			  >Special Education</option>
+			<option value="Language Studies"
+			    {% ifequal userInfo.subject "Language Studies" %} selected="selected"{% endifequal %}
+			  >Language Studies</option>
+			<option value="CATE"
+			    {% ifequal userInfo.subject "CATE" %} selected="selected"{% endifequal %}
+			  >Career and Technology Education</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Position</label>
+              <div class="controls">
+                <input type="text" value="{{ userInfo.job|capfirst }}" name="job" minlength="3" maxlength="85" class="form-control" placeholder="Enter">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>School/Campus/Dept.</label>
+              <div class="controls">
+		<select name="school" class="form-control" name="subject">
+			<option value="">Select One...</option>
+			<option value="LES"
+			    {% ifequal userInfo.school "LES" %} selected="selected"{% endifequal %}
+			  >LES</option>
+			<option value="AES"
+			    {% ifequal userInfo.school "AES" %} selected="selected"{% endifequal %}
+			  >AES</option>
+			<option value="AEN"
+			    {% ifequal userInfo.school "AEN" %} selected="selected"{% endifequal %}
+			  >AEN</option>
+			<option value="AIS"
+			    {% ifequal userInfo.school "AIS" %} selected="selected"{% endifequal %}
+			  >AIS</option>
+			<option value="AJH"
+			    {% ifequal userInfo.school "AJH" %} selected="selected"{% endifequal %}
+			  >AJH</option>
+			<option value="AHS"
+			    {% ifequal userInfo.school "AHS" %} selected="selected"{% endifequal %}
+			  >AHS</option>
+			<option value="Administration"
+			    {% ifequal userInfo.school "Administration" %} selected="selected"{% endifequal %}
+			  >Administration</option>
+			<option value="Operations"
+			    {% ifequal userInfo.school "Operations" %} selected="selected"{% endifequal %}
+			  >Operations</option>
+			<option value="Special Services"
+			    {% ifequal userInfo.school "Special Services" %} selected="selected"{% endifequal %}
+			  >Special Services</option>
+			<option value="Technology"
+			    {% ifequal userInfo.school "Technology" %} selected="selected"{% endifequal %}
+			  >Technology</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Room Number</label>
+              <div class="controls">
+                <input type="text" name="roomNumber" noSpace="true" class="form-control" placeholder="Enter" value="{% if userInfo %}{{ userInfo.roomNumber }}{% endif %}">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Phone Extension</label>
+              <div class="controls">
+                <input type="text" name="phone" class="form-control" number="true" maxlength="4" maxlength="4" placeholder="4-digit" value="{% if userInfo.phoneExtension == None %}{% else %}{{ userInfo.phoneExtension }}{% endif %}">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-12">
+              <label></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">
+                  Update
+                </button>
+                <button type="reset" class="btn btn-primary">
+                  Reset
+                </button>
+              </div>
+            </div>   
+            
+          </form>
+          
+          
+        </div><!--/panel content-->
+      </div><!--/panel-->
+	 
+	 
+       </div><!--/row-->
+       
+{% endblock %}

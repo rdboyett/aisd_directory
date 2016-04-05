@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}AISD Directory Search{% endblock %}
+
+
+
+{% block body %}
+      <!-- column 2 -->
+      <div id="shade"><div id="spinner"></div></div>
+      
+       <h3><i class="glyphicon glyphicon-th-list"></i> Batch Upload</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+	 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4>Choose Your File</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          
+          <form id="uploadCSV_form" class="form form-vertical" action="{% url directory_app.views.uploadCSV %}" method="post">{% csrf_token %}
+            <div class="control-group col-sm-6">
+              <label>Select an Import File (.csv): </label>
+              <div class="controls">
+                <input type="file" name="CSVFile" accept="application/vnd.ms-excel" class="form-control" required="true">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-12">
+              <label></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">
+                  submit
+                </button>
+                <button type="reset" class="btn btn-primary">
+                  Reset
+                </button>
+              </div>
+            </div>   
+            
+          </form>
+          
+          
+        </div><!--/panel content-->
+      </div><!--/panel-->
+	 
+	 
+       </div><!--/row-->
+       
+{% endblock %}

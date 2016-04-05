@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}AISD Directory Search{% endblock %}
+
+
+
+{% block body %}
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-search"></i> Advanced Search</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+	 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <i class="glyphicon glyphicon-wrench pull-right"></i>
+            <h4>Submit Request</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          
+          <form class="form form-vertical">
+            <div class="control-group col-sm-6">
+              <label>First Name</label>
+              <div class="controls">
+                <input type="text" class="form-control" placeholder="Enter Name">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Last Name</label>
+              <div class="controls">
+                <input type="text" class="form-control" placeholder="Enter Name">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-12">
+              <label>Subject</label>
+              <div class="controls">
+		<select id="subject" class="form-control" name="subject" >
+			<option value="none">Select One...</option>
+			<option value="All Subjects">All Subjects</option>
+			<option value="No Subjects">No Subjects</option>
+			<option value="English-Reading">English-Reading</option>
+			<option value="Math">Math</option>
+			<option value="Science">Science</option>
+			<option value="Social Studies">Social Studies</option>
+			<option value="Special Education">Special Education</option>
+			<option value="Language Studies">Language Studies</option>
+			<option value="CATE">Career and Technology Education</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Position</label>
+              <div class="controls">
+                <input type="text" class="form-control" placeholder="Enter">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>School/Campus/Dept.</label>
+              <div class="controls">
+		<select class="form-control" name="subject" >
+			<option value="none">Select One...</option>
+			<option value="LES">LES</option>
+			<option value="AES">AES</option>
+			<option value="AEN">AEN</option>
+			<option value="AIS">AIS</option>
+			<option value="AJH">AJH</option>
+			<option value="AHS">AHS</option>
+			<option value="Administration">Administration</option>
+			<option value="Operations">Operations</option>
+			<option value="Special Services">Special Services</option>
+			<option value="Technology">Technology</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Room Number</label>
+              <div class="controls">
+                <input type="text" class="form-control" placeholder="Enter">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Phone Extension</label>
+              <div class="controls">
+                <input type="text" class="form-control" maxlength="4" placeholder="4-digit">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-12">
+              <label></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">
+                  Search
+                </button>
+                <button type="reset" class="btn btn-primary">
+                  Reset
+                </button>
+              </div>
+            </div>   
+            
+          </form>
+          
+          
+        </div><!--/panel content-->
+      </div><!--/panel-->
+	 
+	 
+       </div><!--/row-->
+       
+{% endblock %}

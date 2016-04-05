@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}AISD Directory Search{% endblock %}
+
+
+
+{% block body %}
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-plus"></i> Add an Employee</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+	 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h4>Employee Information</h4>
+          </div>
+        </div>
+        <div class="panel-body">
+          
+          <form id="addEmployeeForm" class="form form-vertical" action="{% url directory_app.views.addEmployeeAjax %}" method="post">{% csrf_token %}
+            <input type="hidden" value="add" name="addOrUpdate">
+	    <div class="control-group col-sm-6">
+              <label>First Name</label>
+              <div class="controls">
+                <input type="text" name="firstName" noSpace="true" required="true" minlength="2" maxlength="45" class="form-control" placeholder="Enter Name">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Last Name</label>
+              <div class="controls">
+                <input type="text" name="lastName" noSpace="true" required="true" minlength="3" maxlength="45" class="form-control" placeholder="Enter Name">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>email</label>
+              <div class="controls">
+                <input type="email" name="email" class="form-control" placeholder="Enter" required>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Grade</label>
+              <div class="controls">
+		<select name="grade" class="form-control" name="subject" selectcheck="true">
+			<option value="none">Select One...</option>
+			<option value="na">None</option>
+			<option value="K">Kindergarten</option>
+			<option value="1">1st</option>
+			<option value="2">2nd</option>
+			<option value="3">3rd</option>
+			<option value="4">4th</option>
+			<option value="5">5th</option>
+			<option value="6">6th</option>
+			<option value="7">7th</option>
+			<option value="8">8th</option>
+			<option value="9">9th</option>
+			<option value="10">10th</option>
+			<option value="11">11th</option>
+			<option value="12">12th</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Subject</label>
+              <div class="controls">
+		<select name="subject" class="form-control" name="subject" selectcheck="true">
+			<option value="none">Select One...</option>
+			<option value="All Subjects">All Subjects</option>
+			<option value="No Subjects">No Subjects</option>
+			<option value="English-Reading">English-Reading</option>
+			<option value="Math">Math</option>
+			<option value="Science">Science</option>
+			<option value="Social Studies">Social Studies</option>
+			<option value="Special Education">Special Education</option>
+			<option value="Language Studies">Language Studies</option>
+			<option value="CATE">Career and Technology Education</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Position</label>
+              <div class="controls">
+                <input type="text" name="job" required="true" minlength="3" maxlength="85" class="form-control" placeholder="Enter">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>School/Campus/Dept.</label>
+              <div class="controls">
+		<select name="school" class="form-control" name="subject" selectcheck="true">
+			<option value="none">Select One...</option>
+			<option value="LES">LES</option>
+			<option value="AES">AES</option>
+			<option value="AEN">AEN</option>
+			<option value="AIS">AIS</option>
+			<option value="AJH">AJH</option>
+			<option value="AHS">AHS</option>
+			<option value="Administration">Administration</option>
+			<option value="Operations">Operations</option>
+			<option value="Special Services">Special Services</option>
+			<option value="Technology">Technology</option>
+		</select>
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Room Number</label>
+              <div class="controls">
+                <input type="text" name="roomNumber" noSpace="true" class="form-control" placeholder="Enter">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-6">
+              <label>Phone Extension</label>
+              <div class="controls">
+                <input type="text" name="phone" class="form-control" number="true" maxlength="4" placeholder="4-digit">
+              </div>
+            </div>
+	    
+            <div class="control-group col-sm-12">
+              <label></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-primary">
+                  Add
+                </button>
+                <button type="reset" class="btn btn-primary">
+                  Reset
+                </button>
+              </div>
+            </div>   
+            
+          </form>
+          
+          
+        </div><!--/panel content-->
+      </div><!--/panel-->
+	 
+	 
+       </div><!--/row-->
+       
+{% endblock %}
+
+
+
+
+
+{% block extraScript %}
+{% endblock %}
+
+
+
+
+
